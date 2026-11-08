@@ -2,10 +2,14 @@
 {% if include.citation %}
 Recommended citation: {{ include.citation }}<br />
 {% endif %}
+
 <!-- Create the variable so it exists in the event there is no citation -->
 {% assign block = "" %}
 {% if include.paperurl %}
 {% capture block %}{{ block }}<a href="{{ include.paperurl }}">Download Paper</a> | {% endcapture %}
+{% endif %}
+{% if include.codeurl %}
+{% capture block %}{{ block }}<a href="{{ include.codeurl }}">Code</a> | {% endcapture %}
 {% endif %}
 {% if include.slidesurl %}
 {% capture block %}{{ block }}<a href="{{ include.slidesurl }}">Download Slides</a> | {% endcapture %}
@@ -13,6 +17,7 @@ Recommended citation: {{ include.citation }}<br />
 {% if include.bibtexurl %}
 {% capture block %}{{ block }}<a href="{{ include.bibtexurl }}">Download BibTeX</a> | {% endcapture %}
 {% endif %}
+
 <!-- If we have a block, display it after removing the pipe -->
 {% if block.size > 0 %}
 {% assign length = block.size | minus: 3 %}
